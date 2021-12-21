@@ -1,0 +1,5 @@
+http {
+   server {
+      listen {$NGINX_HOST}:{$NGINX_PORT}
+   }
+}
