@@ -5,7 +5,7 @@ const fastify = Fastify({
    logger: true
 });
 const chance = Chance();
-const port = 3333;
+const port = process.env.PORT;
 
 fastify.get('/', (request, reply) => {
    reply.send(generate());
