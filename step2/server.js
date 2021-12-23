@@ -21,28 +21,37 @@ const start = async () => {
  }
 
 function generate() {
-   let pilotsNumber = chance.natural({ min: 5, max: 50 });
-   let pilots = [];
-   for (let i = 0; i < pilotsNumber; i++){
-      let family = [];
-      let familyMembers = chance.natural({ min: 1, max: 5 });
-      for (let j = 0; j < familyMembers; j++){
-         let familyMember = {
-            name: chance.first(),
-            age: chance.age(),
-         };
-         family.push(familyMember);
-      }
-      let pilot = {
-         name: chance.name(),
-         age: chance.age({ type: 'adult' }),
-         callSign: chance.radio(),
-         favoriteAnimal: chance.animal(),
-         family: family,
-      }
-      pilots.push(pilot);
-   }
-   return pilots;
+
+	var numberOfPlanes = chance.integer({
+		min: 0,
+		max: 10
+	});
+	console.log(numberOfPlanes);
+	var planes = [];
+	for (var i = 0; i < numberOfPlanes; ++i) {
+	
+		var airline = "United";
+		var callsign = airline.toUpperCase() + chance.integer({min:1, max:45});
+		var flightId = chance.hash({length: 6, casing: 'upper'})
+		var currentCoords = chance.coordinates();
+		var currentTimeZone = chance.timezone();
+		var pilot = chance.name();
+		var licenseExpireDate = chance.year({min: 2005, max: 2035});
+		
+		planes.push({
+			airline: airline,
+			callsign: callsign,
+			flightId: flightId,
+			currentCoords: currentCoords,
+			currentTimeZone: currentTimeZone,
+			pilot: pilot,
+			licenseExpireDate: licenseExpireDate
+		});
+		
+	};
+	console.log(planes);
+	return planes;
 }
+
 
 start()
